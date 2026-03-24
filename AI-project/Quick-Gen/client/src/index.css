@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* Tailwind import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global font */
+* {
+  font-family: "Outfit", sans-serif;
+}
+
+/* Custom theme variables */
+:root {
+  --color-primary: #5044E5;
+}
+
+/* Reset Tailwind styles for a section */
+.reset-tw, .reset-tw * {
+  all: revert !important;
+}
+
+/* Fix Clerk drawer stacking */
+.cl-drawerRoot {
+  position: fixed !important;  /* Make it float above content */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60 !important;      /* Above navbar (z-50) */
+}
+
+
