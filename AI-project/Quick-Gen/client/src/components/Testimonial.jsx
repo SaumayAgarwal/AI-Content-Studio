@@ -1,99 +1,97 @@
+import React from "react";
+
+const testimonials = [
+  {
+    stars: 5,
+    text: "AI Content Studio completely transformed my workflow. I used to spend hours writing blog posts — now I produce 5x more content with the same quality. The article generator is remarkably good.",
+    initials: "SK",
+    name: "Sneha Kapoor",
+    role: "Content Marketing Lead, Delhi",
+    avatarBg: "linear-gradient(135deg,#534AB7,#3C3489)",
+  },
+  {
+    stars: 5,
+    text: "The image generation and background removal tools alone are worth the subscription. Our e-commerce product photos now look professional without hiring a photographer. Saved us ₹80,000 last quarter.",
+    initials: "RM",
+    name: "Rahul Mehta",
+    role: "E-Commerce Founder, Mumbai",
+    avatarBg: "linear-gradient(135deg,#0F6E56,#085041)",
+  },
+  {
+    stars: 5,
+    text: "I used the resume review tool before my job hunt and it completely reshaped my CV. Got interview calls from 3 top companies within a week. The AI feedback was genuinely insightful and specific.",
+    initials: "AP",
+    name: "Arjun Patel",
+    role: "Software Engineer, Bangalore",
+    avatarBg: "linear-gradient(135deg,#BA7517,#633806)",
+  },
+];
+
 const Testimonial = () => {
-  
-    const testimonials = [
-        { id: 1, description: "PrebuiltUI helped us reduce build time drastically. The components feel production ready and consistent across the product.", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200", name: "Alex Turner", company: "Vercel" },
-        { id: 2, description: "We shipped our MVP weeks earlier than planned. PrebuiltUI removed a huge amount of repetitive UI work. ", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200", name: "Harry Peter", company: "Amazon" },
-        { id: 3, description: "PrebuiltUI strikes the right balance between flexibility and consistency. It feels like a system built by real product teams.", image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60", name: "Jason Kim", company: "Flipkart" },
-        { id: 4, description: "The component structure and tokens system make scaling design incredibly easy. Highly recommended.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop", name: "Sofia Martinez", company: "Linear" },
-        { id: 5, description: "PrebuiltUI allows me to focus on building features instead of fighting CSS. Everything looks premium right out of the box.", image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60", name: "Alex Johnson", company: "Microsoft" },
-        { id: 6, description: "If you’re using Tailwind CSS, PrebuiltUI is a must have. It dramatically speeds up development while keeping the UI clean.", image: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200", name: "Emily Karter", company: "Stripe" },
-        { id: 7, description: "PrebuiltUI strikes the right balance between flexibility and consistency. It feels like a system built by real product teams.", image: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png", name: "Christofer Levin", company: "Deloitte" },
-        { id: 8, description: "PrebuiltUI helped us reduce build time drastically. The components feel production ready and consistent across the product.", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200", name: "Alex Turner", company: "Vercel" },
-        { id: 9, description: "We shipped our MVP weeks earlier than planned. PrebuiltUI removed a huge amount of repetitive UI work. ", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200", name: "Harry Peter", company: "Amazon" }
-    ]
-
-    const columns = [
-        { start: 0, end: 3, className: "animate-scroll-up-1" },
-        { start: 3, end: 6, className: "hidden md:block animate-scroll-up-2" },
-        { start: 6, end: 9, className: "hidden lg:block animate-scroll-up-3" }
-    ]
-
-    const renderCard = (testimonial, index) => (
-        <div key={`${testimonial.id}-${index}`} className="bg-linear-to-b from-[#020204] to-[#191130] border border-slate-800 rounded-xl p-6 mb-4 hover:border-slate-700 transition-all duration-300">
-            <div className="mb-5">
-                <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g stroke="#fff" strokeOpacity=".7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 13.056c.464 0 .91-.131 1.237-.364.329-.234.513-.55.513-.88v-3.73c0-.33-.184-.647-.513-.88C7.91 6.97 7.464 6.838 7 6.838c-.232 0-.455-.066-.619-.182-.164-.117-.256-.275-.256-.44v-.622c0-.33.184-.646.513-.879.328-.233.773-.364 1.237-.364.232 0 .455-.066.619-.182.164-.117.256-.275.256-.44V2.485c0-.165-.092-.323-.256-.44a1.1 1.1 0 0 0-.619-.181c-1.392 0-2.728.393-3.712 1.092-.985.7-1.538 1.649-1.538 2.638v6.218c0 .33.184.646.513.88.328.233.773.364 1.237.364zm9.83 0c.465 0 .91-.131 1.238-.364.328-.234.513-.55.513-.88v-3.73c0-.33-.184-.647-.513-.88-.328-.233-.773-.364-1.237-.364-.232 0-.455-.066-.619-.182-.164-.117-.256-.275-.256-.44v-.622c0-.33.184-.646.512-.879.329-.233.774-.364 1.238-.364.232 0 .454-.066.619-.182.164-.117.256-.275.256-.44V2.485c0-.165-.092-.323-.256-.44a1.1 1.1 0 0 0-.62-.181c-1.391 0-2.727.393-3.711 1.092-.985.7-1.538 1.649-1.538 2.638v6.218c0 .33.184.646.512.88.329.233.774.364 1.238.364z"/></g>
-                </svg>
-            </div>
-            <p className="text-sm text-slate-400 mb-5 leading-relaxed">
-                {testimonial.description}
-            </p>
-            <div className="flex items-center gap-3">
-                <img src={testimonial.image} alt={testimonial.name} className="size-9 rounded-full border border-slate-800" />
-                <div>
-                    <p className="text-sm text-slate-300">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.company}</p>
-                </div>
-            </div>
+  return (
+    <section id="testimonials" className="py-24 px-6 sm:px-16 xl:px-32" style={{ background: "#111827" }}>
+      {/* Header */}
+      <div className="text-center mb-14 reveal">
+        <div className="inline-flex items-center justify-center gap-2 text-gold text-[0.75rem] font-semibold uppercase tracking-[3px] mb-4">
+          Testimonials
         </div>
-    )
+        <h2
+          className="font-display font-bold text-white mb-4"
+          style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.15, letterSpacing: "-0.5px" }}
+        >
+          Trusted by{" "}
+          <em className="not-italic italic text-goldLight">Creators</em> Worldwide
+        </h2>
+        <p className="text-slate text-[1.05rem] leading-[1.75] font-light max-w-[520px] mx-auto">
+          See what professionals and businesses are saying about AI Content Studio.
+        </p>
+      </div>
 
-    return (
-        <>
-            <style>
-                {`
-                    @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-                    *{
-                        font-family: "Geist", sans-serif;
-                    }
-
-                    @keyframes scroll-up {
-                        0% {
-                            transform: translateY(0);
-                        }
-                        100% {
-                            transform: translateY(-50%);
-                        }
-                    }
-                    .animate-scroll-up-1 {
-                        animation: scroll-up 25s linear infinite;
-                    }
-                    .animate-scroll-up-2 {
-                        animation: scroll-up 30s linear infinite;
-                    }
-                    .animate-scroll-up-3 {
-                        animation: scroll-up 20s linear infinite; 
-                    }
-                `}
-            </style>
-
-            <div className="bg-black flex flex-col items-center justify-center py-16 px-4">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-medium text-white mb-4">
-                        People love us
-                    </h1>
-                    <p className="text-sm text-slate-200 max-w-md mx-auto">
-                        Real stories from designers, developers, and product teams using PrebuiltUI to ship faster and with confidence.
-                    </p>
-                </div>
-
-                <div className="relative w-full max-w-6xl overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-32 bg-linear-to-b from-black to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-black to-transparent z-10 pointer-events-none"></div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-[600px] overflow-hidden">
-                        {columns.map((col, colIndex) => (
-                            <div key={colIndex} className={col.className}>
-                                {[...testimonials.slice(col.start, col.end), ...testimonials.slice(col.start, col.end)].map((testimonial, index) =>
-                                    renderCard(testimonial, index)
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+      {/* Testimonials Grid */}
+      <div
+        className="grid gap-5 max-w-[1200px] mx-auto"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
+      >
+        {testimonials.map((t, i) => (
+          <div
+            key={i}
+            className="reveal rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.07)",
+              transitionDelay: `${i * 0.1}s`,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(201,151,58,0.25)")}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)")}
+          >
+            {/* Stars */}
+            <div className="text-gold text-[0.85rem] mb-4 tracking-widest">
+              {"★".repeat(t.stars)}
             </div>
-        </>
-    )
-}
+
+            {/* Quote */}
+            <p className="text-slateLight text-[0.92rem] leading-[1.75] italic mb-6">
+              "{t.text}"
+            </p>
+
+            {/* Author */}
+            <div className="flex items-center gap-3">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-[0.9rem] text-white shrink-0"
+                style={{ background: t.avatarBg }}
+              >
+                {t.initials}
+              </div>
+              <div>
+                <p className="font-semibold text-[0.9rem] text-white">{t.name}</p>
+                <p className="text-slate text-[0.78rem] mt-0.5">{t.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default Testimonial;

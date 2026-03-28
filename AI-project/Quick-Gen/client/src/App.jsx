@@ -21,8 +21,8 @@ const App = () => {
   const {getToken}=useAuth()
   useEffect(()=>{getToken().then((token)=>console.log(token))},[]);
   return (
-    <div>
-    <Toaster />
+    <div className="bg-navy min-h-screen text-white">
+      <Toaster toastOptions={{ style: { background: '#111827', color: '#fff' } }} />
       <Routes>
         <Route path="/" element={<Home />} />
 

@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "ai-content-studio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.61.3",
     "@clerk/react": "^6.1.2",
+    "@clerk/themes": "^2.4.57",
     "axios": "^1.13.6",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",

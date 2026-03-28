@@ -48,28 +48,28 @@ const RemoveBackground = () => {
 };
 
   return (
-    <div className='h-full overflow-y-scroll p-6 text-slate-700'>
+    <div className='h-full overflow-y-scroll p-6 text-gray-200'>
       
       {/* Two-column layout */}
       <div className='flex flex-col lg:flex-row gap-6'>
 
-        <form onSubmit={onSubmitHandler} className='w-full max-w-lg p-4 bg-white rounded-lg
-          border border-gray-200'>
+        <form onSubmit={onSubmitHandler} className='w-full max-w-lg p-6 glass-card rounded-2xl border-white/10 shadow-lg relative overflow-hidden group'>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
             
          {/* Left Column: Blog Input */}
-          <div className='flex items-center gap-3'>
-            <Sparkles className='w-6  text-[#FF4938]' />
-            <h1 className='text-xl font-semibold'>Background Remover</h1>
+          <div className='flex items-center gap-3 relative z-10'>
+            <Sparkles className='w-6 h-6 text-red-500' />
+            <h1 className='text-xl font-bold text-white'>Background Remover</h1>
           </div>
 
           {/* Topic Input */}
-          <p className='mt-6 text-sm font-medium'>Upload Image</p>
+          <p className='mt-8 text-sm font-medium text-gray-300 relative z-10'>Upload Image</p>
 
-          <label className="w-full flex justify-between items-center p-2 px-3 mt-2 text-sm rounded-md border border-gray-300 cursor-pointer text-gray-600 hover:border-blue-400">
+          <label className="w-full flex justify-between items-center p-3 px-4 mt-2 text-sm rounded-xl bg-white/5 border border-white/10 cursor-pointer text-gray-300 hover:border-red-500 hover:bg-white/10 transition-all shadow-inner relative z-10">
             
             <span className="truncate">{fileName}</span>
 
-            <span className="text-blue-500 font-medium">Choose</span>
+            <span className="text-red-400 font-medium bg-red-500/10 px-3 py-1 rounded-md">Choose</span>
           <input
             type='file'
             onChange={handleImageChange}
@@ -78,15 +78,15 @@ const RemoveBackground = () => {
             required/>
             </label>
 
-          <p className='text-xs text-gray-500 font-light mt-1'>
+          <p className='text-xs text-gray-500 font-light mt-2 relative z-10'>
             Supports JPG, PNG, and other image formats</p>
 
           {/* Generate Button */}
           <button
             disabled={loading}
-            className='w-full flex justify-center items-center gap-2
-              bg-gradient-to-r from-[#F6AB41] to-[#FF4938] text-white px-4 py-2 mt-6 text-sm rounded-lg
-              cursor-pointer hover:scale-105 transition-transform'
+            className='w-full flex justify-center items-center gap-2 mt-8 relative z-10
+              bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-3 text-base font-semibold rounded-xl
+              cursor-pointer shadow-[0_0_20px_rgba(239,68,68,0.4)] hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] hover:-translate-y-1 transition-all'
           >
             {
               loading ? <span className='w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin'></span>
@@ -98,22 +98,25 @@ const RemoveBackground = () => {
 
 
         {/* Right Column: Generated Titles */}
-        <div className='w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96'>
-          <div className='flex items-center gap-3'>
-            <Eraser className='w-5 h-5 text-[#FF4938]' />
-            <h1 className='text-xl font-semibold'>Processed Image</h1>
+        <div className='w-full max-w-lg p-6 glass-card rounded-2xl flex flex-col border-white/10 shadow-lg min-h-96 relative overflow-hidden group'>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-white/10 pb-4'>
+            <Eraser className='w-6 h-6 text-orange-400' />
+            <h1 className='text-xl font-bold text-white'>Processed Image</h1>
           </div>
           
           {
             !content ? (
-              <div className='flex-1 flex justify-center items-center mt-4'>
+              <div className='flex-1 flex justify-center items-center mt-4 relative z-10'>
             <div className='text-sm flex flex-col items-center gap-5 text-gray-400'>
-              <Eraser className='w-9 h-9'/>
+              <Eraser className='w-12 h-12 opacity-50'/>
                 <p>Upload an image and click "Remove Background" to get started</p>
             </div>
           </div>
             ) : (
-              <img src={content} alt="image" className='mt-3 w-full h-full'/>
+              <div className='mt-2 h-full relative z-10 flex items-center justify-center'>
+                <img src={content} alt="image" className='w-full h-auto rounded-xl shadow-lg border border-white/5'/>
+              </div>
             )
           }
         </div>

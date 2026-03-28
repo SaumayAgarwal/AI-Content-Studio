@@ -1,18 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
 /* Tailwind import */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global font */
-* {
-  font-family: "Outfit", sans-serif;
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0A0F1E;
+    color: #F8F9FC;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #F8F9FC;
+  }
+}
+
+@layer utilities {
+  /* Legacy glass utilities */
+  .glass {
+    @apply bg-navy2/60 backdrop-blur-xl border border-white/10;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #E8B65A, #C9973A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-legacy {
+    @apply bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent;
+  }
+  
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Gold gradient bg */
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #C9973A, #A07420);
+  }
+
+  /* Section tag decoration */
+  .section-tag-line::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: #C9973A;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
 }
 
 /* Custom theme variables */
 :root {
-  --color-primary: #5044E5;
+  --color-primary: #C9973A;
+  --navy: #0A0F1E;
+  --navy2: #111827;
+  --navy3: #1C2535;
+  --gold: #C9973A;
+  --gold-light: #E8B65A;
+  --gold-pale: #F5E4C0;
+  --slate: #8B96A8;
+  --slate-light: #C4CEDD;
+  --border: rgba(255,255,255,0.07);
 }
 
 /* Reset Tailwind styles for a section */
@@ -22,11 +95,69 @@
 
 /* Fix Clerk drawer stacking */
 .cl-drawerRoot {
-  position: fixed !important;  /* Make it float above content */
+  position: fixed !important;  
   top: 0;
   left: 0;
   right: 0;
-  z-index: 60 !important;      /* Above navbar (z-50) */
+  z-index: 60 !important;      
 }
 
+/* Gold Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0A0F1E; }
+::-webkit-scrollbar-thumb { background: #C9973A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E8B65A; }
 
+/* Custom markdown styling for dark mode */
+.prose-dark {
+  color: #C4CEDD;
+  font-size: 0.875rem;
+}
+.prose-dark h1, .prose-dark h2, .prose-dark h3 {
+  color: #F8F9FC;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+.prose-dark p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+.prose-dark strong {
+  color: #F8F9FC;
+  font-weight: 600;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.mock-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  background: #C9973A;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Testimonial scroll */
+@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-scroll-up-1 { animation: scroll-up 25s linear infinite; }
+.animate-scroll-up-2 { animation: scroll-up 30s linear infinite; }
+.animate-scroll-up-3 { animation: scroll-up 20s linear infinite; }

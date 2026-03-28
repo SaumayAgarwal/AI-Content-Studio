@@ -46,27 +46,28 @@ const ReviewResume = () => {
     setLoading(false)
   };
   return (
-   <div className='h-full overflow-y-scroll p-6 text-slate-700'>
+   <div className='h-full overflow-y-scroll p-6 text-gray-200'>
       
       {/* Two-column layout */}
       <div className='flex flex-col lg:flex-row gap-6'>
 
         <form onSubmit={onSubmitHandler}
-          className='w-full max-w-lg p-4 bg-white rounded-lg border border-gray-200'>
-
+          className='w-full max-w-lg p-6 glass-card border-white/10 rounded-2xl shadow-lg relative overflow-hidden group'>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          
          {/* Left Column: Blog Input */}
-          <div className='flex items-center gap-3'>
-            <Sparkles className='w-6  text-[#00DA83]' />
-            <h1 className='text-xl font-semibold'>Resume Review</h1>
+          <div className='flex items-center gap-3 relative z-10'>
+            <Sparkles className='w-6 h-6 text-emerald-400' />
+            <h1 className='text-xl font-bold text-white'>Resume Review</h1>
           </div>
 
           {/* Topic Input */}
-          <p className='mt-6 text-sm font-medium'>Upload Resume</p>
+          <p className='mt-8 text-sm font-medium text-gray-300 relative z-10'>Upload Resume</p>
 
-          <label className="w-full flex justify-between items-center p-2 px-3 mt-2 text-sm rounded-md border border-gray-300 
-            cursor-pointer text-gray-600 hover:border-blue-400">
+          <label className="w-full flex justify-between items-center p-3 px-4 mt-2 text-sm rounded-xl bg-white/5 border border-white/10 
+            cursor-pointer text-gray-300 hover:border-emerald-500 hover:bg-white/10 transition-all shadow-inner relative z-10">
             <span className="truncate">{fileName}</span>
-            <span className="text-blue-500 font-medium">Choose</span>
+            <span className="text-emerald-400 font-medium bg-emerald-500/10 px-3 py-1 rounded-md">Choose</span>
           <input
             type='file'
             className="hidden"
@@ -75,16 +76,16 @@ const ReviewResume = () => {
             required/>
             </label>
 
-          <p className='mt-6 text-sm font-medium'>Supports PDF resume only</p>
+          <p className='mt-3 text-xs text-gray-500 font-light relative z-10'>Supports PDF resume only</p>
           
 
           {/* Generate Button */}
           <button
             disabled={loading}
             type='submit'
-            className='w-full flex justify-center items-center gap-2
-              bg-gradient-to-r from-[#00DA83] to-[#009BB3] text-white px-4 py-2 mt-6 text-sm rounded-lg
-              cursor-pointer hover:scale-105 transition-transform'>
+            className='w-full flex justify-center items-center gap-2 mt-8 relative z-10
+              bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-4 py-3 text-base font-semibold rounded-xl
+              cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] hover:-translate-y-1 transition-all'>
                 {
                   loading ? <span className='w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin'></span>
                   : <FileText className='w-5' />
@@ -95,23 +96,24 @@ const ReviewResume = () => {
 
 
         {/* Right Column: Generated Titles */}
-        <div className='w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96 max-h-[600px]'>
-          <div className='flex items-center gap-3'>
-            <FileText className='w-5 h-5 text-[#00DA83]' />
-            <h1 className='text-xl font-semibold'>Analysis Results</h1>
+        <div className='w-full max-w-lg p-6 glass-card border-white/10 rounded-2xl flex flex-col shadow-lg min-h-96 max-h-[600px] relative overflow-hidden group'>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-white/10 pb-4'>
+            <FileText className='w-6 h-6 text-emerald-400' />
+            <h1 className='text-xl font-bold text-white'>Analysis Results</h1>
           </div>
           
           {
             !content ? (
-              <div className='flex-1 flex justify-center items-center '>
+              <div className='flex-1 flex justify-center items-center relative z-10'>
                 <div className='text-sm flex flex-col items-center gap-5 text-gray-400'>
-                  <FileText className='w-9 h-9'/>
-                    <p>Upload an resume and click "Review Resume" to get started</p>
+                  <FileText className='w-12 h-12 opacity-50'/>
+                    <p>Upload a resume and click "Review Resume" to get started</p>
                 </div>
               </div>
             ) : (
-              <div className='mt-3 h-full overflow-y-scroll text-sm text-slate-600'>
-                <div className='.reset-tw'>
+              <div className='mt-2 h-full overflow-y-auto pr-2 relative z-10'>
+                <div className='prose-dark'>
                   <Markdown>{content}</Markdown>
                 </div>
               </div>

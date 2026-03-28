@@ -51,28 +51,27 @@ const Community = () => {
   },[user])
 
   return !loading ?(
-  <div className='flex-1 h-full flex flex-col gap-4 p-6'>
-   Creations
+  <div className='flex-1 h-full flex flex-col gap-4 p-6 bg-dark'>
+    <h1 className="text-2xl font-bold text-white mb-6">Community Creations</h1>
 
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
       {creations.map((creation, index) => (
         <div
           key={index}
-          className='relative group inline-block pl-3 pt-3 w-full sm:max-w-1/2 lg:max-w-1/3 p-2'
+          className='relative group w-full rounded-2xl overflow-hidden glass-card border-white/10 shadow-lg'
         >
           <img
             src={creation.content}
             alt=""
-            className='w-full h-full object-cover rounded-lg'
+            className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
           />
 
-          <div className="absolute bottom-0 top-0 right-0 left-3 flex gap-2 items-end justify-end group-hover:justify-between p-3 
-          group-hover:bg-gradient-to-b from-transparent to-black/80 text-white rounded-lg">
-            <p className='text-sm hidden group-hover:block'> {creation.prompt}</p>
-            <div className='flex gap-1 items-center'>
-              <p>{creation.likes.length}</p>
-              <Heart onClick={()=> imageLikeToggle(creation.id)} className={`min-w-5 h-5 hover:scale-110 cursor-pointer ${
-                  creation.likes.includes(user?.id) ? 'fill-red-500 text-red-600': 'text-white'}`}/>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+            <p className='text-sm text-gray-200 mb-2 truncate'> {creation.prompt}</p>
+            <div className='flex gap-1 items-center justify-end w-full'>
+              <p className="text-white font-medium">{creation.likes.length}</p>
+              <Heart onClick={()=> imageLikeToggle(creation.id)} className={`min-w-5 h-5 transition-transform hover:scale-110 cursor-pointer ${
+                  creation.likes.includes(user?.id) ? 'fill-neonBlue text-neonBlue drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]': 'text-white'}`}/>
             </div>
           </div>
         </div>
@@ -80,8 +79,8 @@ const Community = () => {
     </div>
   </div>
 ) : (
-  <div className='flex justify-center items-center h-full'>
-    <span className='w-10 h-10 my-1 rounded-full border-3 border-primary border-t-transparent animate-spin'></span>
+  <div className='flex justify-center items-center h-full bg-dark'>
+    <span className='w-12 h-12 my-1 rounded-full border-4 border-neonPurple border-t-transparent animate-spin shadow-[0_0_15px_rgba(139,92,246,0.5)]'></span>
   </div>
 )
 }

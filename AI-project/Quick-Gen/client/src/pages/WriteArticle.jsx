@@ -48,23 +48,24 @@ const WriteArticle = () => {
   };
 
   return (
-    <div className='h-full overflow-y-scroll p-6 text-slate-700'>
+    <div className='h-full overflow-y-scroll p-6 text-gray-200'>
       
       {/* Two-column layout */}
       <div className='flex flex-col lg:flex-row gap-6'>
 
         {/* Left Column: Article Configuration */}
-        <div className='flex-1 max-w-lg p-4 bg-white border border-gray-200 rounded-lg'>
-          <div className='flex items-center gap-3'>
-            <Sparkles className='w-6 h-6 text-[#4A7AFF]' />
-            <h1 className='text-xl font-semibold'>Article Configuration</h1>
+        <div className='flex-1 max-w-lg p-6 glass-card border-white/10 rounded-2xl shadow-lg relative overflow-hidden group'>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-neonBlue/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 relative z-10'>
+            <Sparkles className='w-6 h-6 text-neonBlue' />
+            <h1 className='text-xl font-bold text-white'>Article Configuration</h1>
           </div>
 
           {/* Article Topic */}
-          <p className='mt-6 text-sm font-medium'>Article Topic</p>
+          <p className='mt-8 text-sm font-medium text-gray-300 relative z-10'>Article Topic</p>
           <input
             type='text'
-            className='w-full p-2 px-3 mt-2 outline-none text-sm rounded-md border border-gray-300'
+            className='w-full p-3 px-4 mt-2 outline-none text-sm rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neonBlue focus:ring-1 focus:ring-neonBlue transition-all shadow-inner relative z-10'
             placeholder='The future of artificial intelligence is...'
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -78,10 +79,10 @@ const WriteArticle = () => {
               <span
                 key={index}
                 onClick={() => setSelectedLength(item)}
-                className={`text-xs px-4 py-1 border rounded-full cursor-pointer transition
+                className={`text-sm px-5 py-2 border rounded-full cursor-pointer transition-all duration-300 shadow-sm relative z-10 font-medium
                   ${selectedLength.text === item.text
-                    ? 'bg-blue-50 text-blue-700 border-blue-300'
-                    : 'text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-gray-700'
+                    ? 'bg-gradient-to-r from-neonBlue/30 to-neonPurple/30 text-white border-neonPurple/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
+                    : 'text-gray-400 border-white/10 bg-white/5 hover:bg-white/10 hover:text-gray-200'
                   }`}
               >
                 {item.text}
@@ -94,9 +95,9 @@ const WriteArticle = () => {
             disabled={loading}
             type='button'
             onClick={onGenerateArticle}
-            className='w-full flex justify-center items-center gap-2
-              bg-gradient-to-r from-[#226BFF] to-[#65ADFF] text-white px-4 py-2 mt-6 text-sm rounded-lg
-              cursor-pointer hover:scale-105 transition-transform'
+            className='w-full flex justify-center items-center gap-2 mt-8 relative z-10
+              bg-gradient-to-r from-neonBlue to-neonPurple text-white px-4 py-3 text-base font-semibold rounded-xl
+              cursor-pointer shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-1 transition-all'
           >
             {
               loading ? <span className='w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin'></span>
@@ -107,10 +108,11 @@ const WriteArticle = () => {
         </div>
 
         {/* Right Column: Generated Article */}
-        <div className='flex-1 max-w-lg p-4 bg-white border border-gray-200 rounded-lg flex flex-col min-h-[300px]'>
-          <div className='flex items-center gap-3'>
-            <Edit className='w-5 h-5 text-[#4A7AFF]' />
-            <h1 className='text-xl font-semibold'>Generated Article</h1>
+        <div className='flex-1 max-w-lg p-6 glass-card border-white/10 rounded-2xl flex flex-col min-h-[400px] shadow-lg relative overflow-hidden group'>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-neonPurple/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-white/10 pb-4'>
+            <Edit className='w-6 h-6 text-neonPurple' />
+            <h1 className='text-xl font-bold text-white'>Generated Article</h1>
           </div>
 
           {!content ? (
@@ -121,8 +123,8 @@ const WriteArticle = () => {
             </div>
           </div>
           ) : (
-            <div className='mt-3 h-full overflow-y-scroll text-sm text-slate-600'>
-              <div className='.reset-tw'>
+            <div className='mt-2 h-full overflow-y-auto pr-2 relative z-10'>
+              <div className='prose-dark'>
                 <Markdown>{content}</Markdown>
               </div>
             </div>
