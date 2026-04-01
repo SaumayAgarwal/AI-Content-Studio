@@ -25,7 +25,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how" className="py-24 px-6 sm:px-16 xl:px-32 relative" style={{ background: "#0A0F1E" }}>
+    <section id="how" className="py-24 px-6 sm:px-16 xl:px-32 relative bg-background transition-colors duration-300">
       <div className="max-w-[1200px] mx-auto grid gap-20 items-center"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
 
@@ -34,10 +34,10 @@ const HowItWorks = () => {
           <div className="inline-flex items-center gap-2 text-gold text-[0.75rem] font-semibold uppercase tracking-[3px] mb-4 section-tag-line">
             How It Works
           </div>
-          <h2 className="font-display font-bold text-white mb-4"
+          <h2 className="font-display font-bold text-foreground mb-4"
             style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.15, letterSpacing: "-0.5px" }}>
             From Idea to{" "}
-            <em className="not-italic italic text-goldLight">Output</em> in Minutes
+            <em className="not-italic italic text-gold-light">Output</em> in Minutes
           </h2>
           <p className="text-slate text-[1.05rem] leading-[1.75] font-light mb-10 max-w-[520px]">
             Our streamlined workflow gets you results without the complexity. No technical skill required.
@@ -47,17 +47,17 @@ const HowItWorks = () => {
             {steps.map((step, i) => (
               <div
                 key={i}
-                className="flex gap-6 py-7 border-b border-white/[0.07] last:border-0 first:pt-0 group cursor-default
+                className="flex gap-6 py-7 border-b border-border last:border-0 first:pt-0 group cursor-default
                   transition-all duration-300"
               >
                 <div
                   className="w-[42px] h-[42px] shrink-0 rounded-xl flex items-center justify-center font-display text-[1rem] font-bold text-gold
-                    border border-white/[0.07] transition-all duration-300 group-hover:bg-gold group-hover:text-white group-hover:border-gold"
+                    border border-border transition-all duration-300 group-hover:bg-gold group-hover:text-white group-hover:border-gold"
                 >
                   {step.num}
                 </div>
                 <div>
-                  <h4 className="font-display text-[1.05rem] font-semibold text-white mb-1.5">{step.title}</h4>
+                  <h4 className="font-display text-[1.05rem] font-semibold text-foreground mb-1.5">{step.title}</h4>
                   <p className="text-slate text-[0.88rem] leading-[1.65]">{step.desc}</p>
                 </div>
               </div>
@@ -69,14 +69,14 @@ const HowItWorks = () => {
         <div
           className="reveal rounded-[20px] overflow-hidden shadow-dark-xl"
           style={{
-            background: "#1C2535",
-            border: "1px solid rgba(255,255,255,0.07)",
+            background: "var(--navy3)",
+            border: "1px solid var(--border)",
             transitionDelay: "0.2s",
           }}
         >
           {/* Mock header */}
           <div
-            className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.07]"
+            className="flex items-center gap-2 px-5 py-3.5 border-b border-border"
             style={{ background: "rgba(255,255,255,0.04)" }}
           >
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
@@ -96,14 +96,14 @@ const HowItWorks = () => {
                 <div
                   key={label}
                   className="flex-1 rounded-xl p-3.5 text-[0.78rem] text-slate"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+                  style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}
                 >
-                  <strong className="block text-white text-[0.85rem] mb-1">{label}</strong>
+                  <strong className="block text-foreground text-[0.85rem] mb-1">{label}</strong>
                   {val}
-                  <div className="h-1.5 rounded-full mt-2 overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                  <div className="h-1.5 rounded-full mt-2 overflow-hidden" style={{ background: "var(--border)" }}>
                     <div
                       className="h-full rounded-full animate-bar-grow"
-                      style={{ width: pct, background: "linear-gradient(90deg, #C9973A, #E8B65A)" }}
+                      style={{ width: pct, background: "linear-gradient(90deg, var(--gold), var(--gold-light))" }}
                     />
                   </div>
                 </div>
@@ -112,10 +112,10 @@ const HowItWorks = () => {
 
             {/* Typing indicator */}
             <div
-              className="rounded-xl p-3 font-mono text-[0.78rem] text-slateLight leading-[1.6]"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+              className="rounded-xl p-3 font-mono text-[0.78rem] text-slate-light leading-[1.6]"
+              style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}
             >
-              <span className="text-goldLight">✦</span> Writing blog post: "Top 10 AI Tools for 2025..."<br />
+              <span className="text-gold-light">✦</span> Writing blog post: "Top 10 AI Tools for 2025..."<br />
               <span className="text-slate">→ Introduction complete. Writing section 2...</span><br />
               <span className="mock-cursor" />
             </div>
@@ -125,7 +125,7 @@ const HowItWorks = () => {
               className="h-[90px] rounded-xl flex items-center justify-center gap-1.5 text-[0.78rem] text-slate"
               style={{
                 background: "linear-gradient(135deg, rgba(201,151,58,0.1), rgba(59,139,212,0.1))",
-                border: "1px dashed rgba(201,151,58,0.2)",
+                border: "1px dashed var(--gold)",
               }}
             >
               <span className="text-lg">🖼️</span> Image being generated...
@@ -134,10 +134,10 @@ const HowItWorks = () => {
             {/* Resume score */}
             <div
               className="flex-1 rounded-xl p-3.5 text-[0.78rem] text-slate"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+              style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}
             >
-              <strong className="text-white text-[0.85rem]">Resume Score</strong>{" "}
-              <span className="text-goldLight text-[1.1rem] font-bold font-display">87/100</span>{" "}
+              <strong className="text-foreground text-[0.85rem]">Resume Score</strong>{" "}
+              <span className="text-gold-light text-[1.1rem] font-bold font-display">87/100</span>{" "}
               — Strong match for Product Manager roles
             </div>
           </div>

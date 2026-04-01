@@ -26,8 +26,8 @@ const Home = () => {
       <Hero />
       <AiTools />
       <HowItWorks />
-      <Testimonial />
       <Plan />
+      <Testimonial />
       <CtaBanner />
       <Footer />
     </div>

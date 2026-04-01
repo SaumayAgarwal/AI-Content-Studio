@@ -16,28 +16,34 @@ import { useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import { Toaster } from 'react-hot-toast'
 
+import { ThemeProvider } from "./context/ThemeContext";
+
 const App = () => {
+  const { getToken } = useAuth();
+  useEffect(() => {
+    getToken().then((token) => console.log(token));
+  }, []);
 
-  const {getToken}=useAuth()
-  useEffect(()=>{getToken().then((token)=>console.log(token))},[]);
   return (
-    <div className="bg-navy min-h-screen text-white">
-      <Toaster toastOptions={{ style: { background: '#111827', color: '#fff' } }} />
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <ThemeProvider>
+      <div className="bg-background min-h-screen text-foreground transition-colors duration-300">
+        <Toaster toastOptions={{ style: { background: 'var(--navy2)', color: 'var(--foreground)' } }} />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/ai" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="write-article" element={<WriteArticle />} />
-          <Route path="blog-titles" element={<BlogTitles />} />
-          <Route path="generate-images" element={<GenerateImages />} />
-          <Route path="remove-background" element={<RemoveBackground />} />
-          <Route path="remove-object" element={<RemoveObject />} />
-          <Route path="review-resume" element={<ReviewResume />} />
-          <Route path="community" element={<Community />} />
-        </Route>
-      </Routes>
-    </div>
+          <Route path="/ai" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="write-article" element={<WriteArticle />} />
+            <Route path="blog-titles" element={<BlogTitles />} />
+            <Route path="generate-images" element={<GenerateImages />} />
+            <Route path="remove-background" element={<RemoveBackground />} />
+            <Route path="remove-object" element={<RemoveObject />} />
+            <Route path="review-resume" element={<ReviewResume />} />
+            <Route path="community" element={<Community />} />
+          </Route>
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 };
 

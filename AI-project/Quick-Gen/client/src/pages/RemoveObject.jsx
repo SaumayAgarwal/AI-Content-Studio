@@ -52,29 +52,29 @@ const RemoveObject = () => {
   };
 
   return (  
-    <div className='h-full overflow-y-scroll p-6 text-gray-200'>
+    <div className='h-full overflow-y-scroll p-6 bg-background text-foreground transition-colors duration-300'>
       
       {/* Two-column layout */}
       <div className='flex flex-col lg:flex-row gap-6'>
 
         <form onSubmit={onSubmitHandler}
-          className='w-full max-w-lg p-6 glass-card border-white/10 rounded-2xl shadow-lg relative overflow-hidden group'>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-neonBlue/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          className='w-full max-w-lg p-6 bg-card-bg border border-border rounded-2xl shadow-lg relative overflow-hidden group transition-all duration-300'>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
 
-         {/* Left Column: Blog Input */}
+         {/* Left Column: Input */}
           <div className='flex items-center gap-3 relative z-10'>
-            <Sparkles className='w-6 h-6 text-neonBlue' />
-            <h1 className='text-xl font-bold text-white'>Object Removal</h1>
+            <Sparkles className='w-6 h-6 text-gold' />
+            <h1 className='text-xl font-bold text-foreground font-display'>Object Removal</h1>
           </div>
 
           {/* Topic Input */}
-          <p className='mt-8 text-sm font-medium text-gray-300 relative z-10'>Upload Image</p>
+          <p className='mt-8 text-sm font-medium text-slate relative z-10 font-sans'>Upload Image</p>
 
-          <label className="w-full flex justify-between items-center p-3 px-4 mt-2 text-sm rounded-xl bg-white/5 border border-white/10 cursor-pointer text-gray-300 hover:border-neonBlue hover:bg-white/10 transition-all shadow-inner relative z-10">
+          <label className="w-full flex justify-between items-center p-3 px-4 mt-2 text-sm rounded-xl bg-background border border-border cursor-pointer text-slate hover:border-gold hover:bg-card-bg transition-all shadow-inner relative z-10 font-sans">
             
             <span className="truncate">{fileName}</span>
 
-            <span className="text-neonBlue font-medium bg-neonBlue/10 px-3 py-1 rounded-md">Choose</span>
+            <span className="text-gold font-medium bg-gold/10 px-3 py-1 rounded-md">Choose</span>
           <input
             type='file'
             onChange={handleImageChange}
@@ -83,9 +83,9 @@ const RemoveObject = () => {
             required/>
             </label>
 
-          <p className='mt-6 text-sm font-medium text-gray-300 relative z-10'>Describe Object name to remove</p>
+          <p className='mt-6 text-sm font-medium text-slate relative z-10 font-sans'>Describe Object name to remove</p>
           <textarea
-          className='w-full p-3 px-4 mt-2 outline-none text-sm rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neonBlue focus:ring-1 focus:ring-neonBlue transition-all shadow-inner relative z-10'
+          className='w-full p-3 px-4 mt-2 outline-none text-sm rounded-xl bg-background border border-border text-foreground placeholder-slate/50 focus:border-gold focus:ring-1 focus:ring-gold transition-all shadow-inner relative z-10 font-sans'
           placeholder='e.g , watch or spoon, only single object name'
           value={object}
           onChange={(e) => setObject(e.target.value)}
@@ -97,8 +97,8 @@ const RemoveObject = () => {
             disabled={loading}
             type='submit'
             className='w-full flex justify-center items-center gap-2 mt-8 relative z-10
-              bg-gradient-to-r from-neonBlue to-neonPurple text-white px-4 py-3 text-base font-semibold rounded-xl
-              cursor-pointer shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-1 transition-all'>
+              bg-gold-gradient text-white px-4 py-3 text-base font-semibold rounded-xl
+              cursor-pointer shadow-gold-sm hover:-translate-y-1 transition-all font-sans'>
            {
             loading ? <span className='w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin'></span> 
             : <Scissors className='w-5' />
@@ -109,11 +109,11 @@ const RemoveObject = () => {
 
 
         {/* Right Column: Generated Titles */}
-        <div className='w-full max-w-lg p-6 glass-card border-white/10 rounded-2xl flex flex-col shadow-lg min-h-96 relative overflow-hidden group'>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-neonPurple/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-white/10 pb-4'>
-            <Scissors className='w-6 h-6 text-neonBlue' />
-            <h1 className='text-xl font-bold text-white'>Processed Image</h1>
+        <div className='w-full max-w-lg p-6 bg-card-bg border border-border rounded-2xl flex flex-col shadow-lg min-h-96 relative overflow-hidden group transition-all duration-300'>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gold/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-border pb-4'>
+            <Scissors className='w-6 h-6 text-gold' />
+            <h1 className='text-xl font-bold text-foreground font-display'>Processed Image</h1>
           </div>
           
           {

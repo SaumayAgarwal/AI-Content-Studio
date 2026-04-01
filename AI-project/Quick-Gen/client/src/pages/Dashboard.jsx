@@ -31,31 +31,39 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getDashboardData();
+    // Force reload user data to sync plan/metadata after potential upgrade
+    if (user) {
+      user.reload().then(() => {
+        getDashboardData();
+      });
+    } else {
+      getDashboardData();
+    }
   }, []);
 
   if (!isLoaded) {
     return (
-      <div className="flex items-center justify-center h-full p-6">
+      <div className="flex items-center justify-center h-full p-6 bg-background">
         <div className="w-10 h-10 rounded-full border-2 border-gold border-t-transparent animate-spin" />
       </div>
     );
   }
 
-  const plan = user?.publicMetadata?.plan === "Professional" ? "Premium" : (user?.publicMetadata?.plan ?? "Free");
+  const rawPlan = user?.publicMetadata?.plan;
+  const plan = (rawPlan === "Professional" || rawPlan === "Premium") ? "Premium" : (rawPlan || "Free");
 
   const statCards = [
     {
       label: "Total Creations",
       value: creations.length,
       Icon: Sparkles,
-      iconBg: "linear-gradient(135deg, #C9973A, #A07420)",
+      iconClass: "bg-gold-gradient",
     },
     {
       label: "Active Plan",
       value: plan,
       Icon: Gem,
-      iconBg: "linear-gradient(135deg, #E8B65A, #C9973A)",
+      iconClass: "bg-gold-gradient",
       capitalize: true,
     },
     {
@@ -66,16 +74,16 @@ const Dashboard = () => {
         return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
       }).length,
       Icon: TrendingUp,
-      iconBg: "linear-gradient(135deg, #5DCAA5, #0F6E56)",
+      iconClass: "bg-[linear-gradient(135deg,#5DCAA5,#0F6E56)]",
     },
   ];
 
   return (
-    <div className="h-full overflow-y-auto p-6 text-white font-sans">
+    <div className="h-full overflow-y-auto p-6 bg-background text-foreground transition-colors duration-300">
 
       {/* Welcome */}
       <div className="mb-7">
-        <h1 className="font-display text-2xl font-bold text-white">
+        <h1 className="font-display text-2xl font-bold text-foreground">
           Welcome back{user?.firstName ? `, ${user.firstName}` : ""} 👋
         </h1>
         <p className="text-slate text-sm mt-1">Here's what's happening with your content today.</p>
@@ -83,27 +91,21 @@ const Dashboard = () => {
 
       {/* Stat Cards */}
       <div className="flex gap-4 flex-wrap mb-8">
-        {statCards.map(({ label, value, Icon, iconBg, capitalize }) => (
+        {statCards.map(({ label, value, Icon, iconClass, capitalize }) => (
           <div
             key={label}
-            className="flex justify-between items-center w-64 p-5 px-6 rounded-2xl transition-all duration-300
-              hover:shadow-[0_4px_25px_rgba(201,151,58,0.15)]"
-            style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)",
-            }}
+            className="flex justify-between items-center w-64 p-5 px-6 rounded-2xl transition-all duration-300 hover:shadow-gold-sm bg-card-bg border border-border"
           >
             <div>
               <p className="text-sm font-medium text-slate">{label}</p>
               <h2
-                className={`text-3xl font-bold mt-1 text-white font-display ${capitalize ? "capitalize" : ""}`}
+                className={`text-3xl font-bold mt-1 text-foreground font-display ${capitalize ? "capitalize" : ""}`}
               >
                 {value}
               </h2>
             </div>
             <div
-              className="w-10 h-10 rounded-xl text-white flex justify-center items-center shrink-0"
-              style={{ background: iconBg }}
+              className={`w-10 h-10 rounded-xl text-white flex justify-center items-center shrink-0 ${iconClass}`}
             >
               <Icon className="w-5 h-5" />
             </div>
@@ -114,30 +116,21 @@ const Dashboard = () => {
       {/* Recent Creations */}
       {loading ? (
         <div className="flex justify-center items-center h-48">
-          <div
-            className="w-11 h-11 rounded-full border-2 border-t-transparent animate-spin"
-            style={{ borderColor: "#C9973A", borderTopColor: "transparent" }}
-          />
+          <div className="w-11 h-11 rounded-full border-2 border-gold border-t-transparent animate-spin" />
         </div>
       ) : (
         <div className="space-y-3">
           <div className="flex items-center gap-3 mb-5">
-            <p className="font-display font-semibold text-lg text-white tracking-wide">Recent Creations</p>
-            <span
-              className="px-2.5 py-0.5 rounded-full text-[0.72rem] font-semibold"
-              style={{ background: "rgba(201,151,58,0.15)", color: "#E8B65A" }}
-            >
+            <p className="font-display font-semibold text-lg text-foreground tracking-wide">Recent Creations</p>
+            <span className="px-2.5 py-0.5 rounded-full text-[0.72rem] font-semibold bg-gold/15 text-gold-light">
               {creations.length}
             </span>
           </div>
 
           {creations.length === 0 ? (
-            <div
-              className="rounded-2xl p-12 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
+            <div className="rounded-2xl p-12 text-center bg-card-bg border border-border">
               <div className="text-4xl mb-3">✨</div>
-              <p className="text-white font-semibold mb-1">No creations yet</p>
+              <p className="text-foreground font-semibold mb-1">No creations yet</p>
               <p className="text-slate text-sm">Start by picking a tool from the sidebar.</p>
             </div>
           ) : (

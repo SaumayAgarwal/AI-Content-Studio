@@ -43,16 +43,15 @@ const AiTools = () => {
   };
 
   return (
-    <section id="tools" className="py-24 px-6 sm:px-16 xl:px-32" style={{ background: "#111827" }}>
+    <section id="tools" className="py-24 px-6 sm:px-16 xl:px-32 bg-navy2 transition-colors duration-300">
       {/* Section Header */}
       <div className="text-center mb-16 reveal">
         <div className="inline-flex items-center gap-2 text-gold text-[0.75rem] font-semibold uppercase tracking-[3px] mb-4 justify-center">
           Our Tools
         </div>
-        <h2 className="font-display font-bold text-white mb-4"
-          style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.15, letterSpacing: "-0.5px" }}>
+        <h2 className="font-display font-bold text-foreground mb-4 text-pricing-headline leading-[1.15] tracking-[-0.5px]">
           Everything You Need to{" "}
-          <em className="not-italic italic text-goldLight">Create &amp; Edit</em>
+          <em className="not-italic italic text-gold-light">Create &amp; Edit</em>
         </h2>
         <p className="text-slate max-w-lg mx-auto text-[1.05rem] leading-[1.75] font-light">
           Six powerful AI tools, one seamless platform. No switching apps, no subscriptions for each tool.
@@ -60,43 +59,25 @@ const AiTools = () => {
       </div>
 
       {/* Tools Grid */}
-      <div className="grid gap-5 max-w-[1200px] mx-auto"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+      <div className="grid gap-5 max-w-[1200px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {AiToolsData.map((tool, index) => (
           <div
             key={index}
-            className="reveal relative rounded-2xl p-8 cursor-pointer overflow-hidden transition-all duration-[350ms]
-              hover:-translate-y-1.5 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
-            style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              transitionDelay: `${index * 0.04}s`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(201,151,58,0.35)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
-            }}
+            className={`reveal relative rounded-2xl p-8 cursor-pointer overflow-hidden transition-all duration-[300ms]
+              hover:-translate-y-2 hover:shadow-gold-sm group bg-card-bg border border-border hover:border-gold
+              ${index === 0 ? 'delay-[0s]' : index === 1 ? 'delay-[100ms]' : index === 2 ? 'delay-[200ms]' : index === 3 ? 'delay-[300ms]' : index === 4 ? 'delay-[400ms]' : 'delay-[500ms]'}`}
             onClick={() => handleToolClick(tool.path)}
           >
-            {/* Hover gradient overlay */}
-            <div
-              className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-[350ms] pointer-events-none
-                group-hover:opacity-100"
-              style={{ background: "linear-gradient(135deg, rgba(201,151,58,0.06), transparent)" }}
-            />
-
             {/* Icon */}
             <div
-              className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-[22px] mb-5 relative z-10"
-              style={{ background: iconColors[index].bg, color: iconColors[index].color }}
+              className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-[22px] mb-5 relative z-10 transition-transform duration-300 group-hover:scale-110"
+              style={{ backgroundColor: iconColors[index].bg, color: iconColors[index].color }}
             >
               <tool.Icon className="w-6 h-6" />
             </div>
 
             {/* Title */}
-            <h3 className="font-display text-[1.2rem] font-semibold text-white mb-2.5 relative z-10">
+            <h3 className="font-display text-[1.2rem] font-semibold text-foreground mb-2.5 relative z-10">
               {tool.title}
             </h3>
 
@@ -108,10 +89,12 @@ const AiTools = () => {
             {/* Tag */}
             <span
               className="inline-block mt-4 px-3 py-1 rounded-full text-[0.72rem] font-semibold tracking-[0.5px] relative z-10"
-              style={{ background: tagColors[index].bg, color: tagColors[index].color }}
+              style={{ backgroundColor: tagColors[index].bg, color: tagColors[index].color }}
             >
               {tagLabels[index]}
             </span>
+            {/* Note: Kept specific colors in style for complex opacity mapping, 
+                but using 'backgroundColor' for better React compatibility. */}
           </div>
         ))}
       </div>

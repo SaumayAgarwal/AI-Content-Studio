@@ -43,24 +43,24 @@ const BlogTitles = () => {
   }
 
   return (
-    <div className='h-full overflow-y-scroll p-6 text-gray-200'>
+    <div className='h-full overflow-y-scroll p-6 bg-background text-foreground transition-colors duration-300'>
       
       {/* Two-column layout */}
       <div className='flex flex-col lg:flex-row gap-6'>
 
         {/* Left Column: Blog Input */}
-        <div className='flex-1 max-w-lg p-6 glass-card border-white/10 rounded-2xl shadow-lg relative overflow-hidden group'>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-fuchsia-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+        <div className='flex-1 max-w-lg p-6 bg-card-bg border border-border rounded-2xl shadow-lg relative overflow-hidden group transition-all duration-300'>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
           <div className='flex items-center gap-3 relative z-10'>
-            <Sparkles className='w-6 h-6 text-fuchsia-400' />
-            <h1 className='text-xl font-bold text-white'>AI Title Generator</h1>
+            <Sparkles className='w-6 h-6 text-gold' />
+            <h1 className='text-xl font-bold text-foreground font-display'>AI Title Generator</h1>
           </div>
 
           {/* Topic Input */}
-          <p className='mt-8 text-sm font-medium text-gray-300 relative z-10'>Keyword</p>
+          <p className='mt-8 text-sm font-medium text-slate relative z-10 font-sans'>Keyword</p>
           <input
             type='text'
-            className='w-full p-3 px-4 mt-2 outline-none text-sm rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 transition-all shadow-inner relative z-10'
+            className='w-full p-3 px-4 mt-2 outline-none text-sm rounded-xl bg-background border border-border text-foreground placeholder-slate/50 focus:border-gold focus:ring-1 focus:ring-gold transition-all shadow-inner relative z-10 font-sans'
             placeholder='The future of artificial intelligence is...'
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -74,10 +74,10 @@ const BlogTitles = () => {
               <span 
                 key={index}
                 onClick={() => setSelectedCategory(item)}
-                className={`text-sm px-5 py-2 border rounded-full cursor-pointer transition-all duration-300 shadow-sm font-medium
+                className={`text-sm px-5 py-2 border rounded-full cursor-pointer transition-all duration-300 shadow-sm font-medium font-sans
                   ${selectedCategory === item
-                    ? 'bg-gradient-to-r from-fuchsia-500/30 to-purple-500/30 text-white border-fuchsia-500/50 shadow-[0_0_15px_rgba(217,70,239,0.3)]'
-                    : 'text-gray-400 border-white/10 bg-white/5 hover:bg-white/10 hover:text-gray-200'
+                    ? 'bg-gold/15 text-gold border-gold/40 shadow-[0_0_15px_rgba(201,151,58,0.2)]'
+                    : 'text-slate border-border bg-background hover:bg-card-bg hover:text-foreground'
                   }`}
               >
                 {item} 
@@ -91,8 +91,8 @@ const BlogTitles = () => {
             type='button'
             onClick={onGenerateArticle}
             className='w-full flex justify-center items-center gap-2 mt-8 relative z-10
-              bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white px-4 py-3 text-base font-semibold rounded-xl
-              cursor-pointer shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_30px_rgba(217,70,239,0.6)] hover:-translate-y-1 transition-all'
+              bg-gold-gradient text-white px-4 py-3 text-base font-semibold rounded-xl
+              cursor-pointer shadow-gold-sm hover:-translate-y-1 transition-all font-sans'
           >
             {loading ? <span className='w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin'></span>
               : <Hash className='w-5' />}
@@ -101,11 +101,11 @@ const BlogTitles = () => {
         </div>
 
         {/* Right Column: Generated Titles */}
-        <div className='flex-1 max-w-lg p-6 glass-card border-white/10 rounded-2xl flex flex-col min-h-[400px] shadow-lg relative overflow-hidden group'>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-white/10 pb-4'>
-            <Hash className='w-6 h-6 text-fuchsia-400' />
-            <h1 className='text-xl font-bold text-white'>Generated Titles</h1>
+        <div className='flex-1 max-w-lg p-6 bg-card-bg border border-border rounded-2xl flex flex-col min-h-[400px] shadow-lg relative overflow-hidden group transition-all duration-300'>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gold/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          <div className='flex items-center gap-3 mb-4 relative z-10 border-b border-border pb-4'>
+            <Hash className='w-6 h-6 text-gold' />
+            <h1 className='text-xl font-bold text-foreground font-display'>Generated Titles</h1>
           </div>
           {
             !content ?(

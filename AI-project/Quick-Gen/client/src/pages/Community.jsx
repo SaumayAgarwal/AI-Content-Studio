@@ -51,14 +51,14 @@ const Community = () => {
   },[user])
 
   return !loading ?(
-  <div className='flex-1 h-full flex flex-col gap-4 p-6 bg-dark'>
-    <h1 className="text-2xl font-bold text-white mb-6">Community Creations</h1>
+  <div className='flex-1 h-full flex flex-col gap-4 p-6 bg-background text-foreground transition-colors duration-300'>
+    <h1 className="text-2xl font-bold text-foreground font-display mb-6">Community Creations</h1>
 
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
       {creations.map((creation, index) => (
         <div
           key={index}
-          className='relative group w-full rounded-2xl overflow-hidden glass-card border-white/10 shadow-lg'
+          className='relative group w-full rounded-2xl overflow-hidden bg-card-bg border border-border shadow-lg transition-all duration-300'
         >
           <img
             src={creation.content}
@@ -66,12 +66,12 @@ const Community = () => {
             className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-            <p className='text-sm text-gray-200 mb-2 truncate'> {creation.prompt}</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+            <p className='text-sm text-gray-100 mb-2 truncate font-sans'> {creation.prompt}</p>
             <div className='flex gap-1 items-center justify-end w-full'>
               <p className="text-white font-medium">{creation.likes.length}</p>
               <Heart onClick={()=> imageLikeToggle(creation.id)} className={`min-w-5 h-5 transition-transform hover:scale-110 cursor-pointer ${
-                  creation.likes.includes(user?.id) ? 'fill-neonBlue text-neonBlue drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]': 'text-white'}`}/>
+                  creation.likes.includes(user?.id) ? 'fill-gold text-gold drop-shadow-[0_0_8px_rgba(201,151,58,0.6)]': 'text-white'}`}/>
             </div>
           </div>
         </div>
@@ -79,8 +79,8 @@ const Community = () => {
     </div>
   </div>
 ) : (
-  <div className='flex justify-center items-center h-full bg-dark'>
-    <span className='w-12 h-12 my-1 rounded-full border-4 border-neonPurple border-t-transparent animate-spin shadow-[0_0_15px_rgba(139,92,246,0.5)]'></span>
+  <div className='flex justify-center items-center h-full bg-background'>
+    <span className='w-12 h-12 my-1 rounded-full border-4 border-gold border-t-transparent animate-spin shadow-gold-sm'></span>
   </div>
 )
 }
