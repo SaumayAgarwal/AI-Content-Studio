@@ -1,102 +1,67 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-const footerCols = [
-  {
-    title: "Tools",
-    links: [
-      { label: "Article Writing", href: "/ai/write-article" },
-      { label: "Blog Generation", href: "/ai/blog-titles" },
-      { label: "Image Generation", href: "/ai/generate-images" },
-      { label: "Remove Background", href: "/ai/remove-background" },
-      { label: "Remove Object", href: "/ai/remove-object" },
-      { label: "Resume Review", href: "/ai/review-resume" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press", href: "#" },
-      { label: "Contact", href: "#" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "Refund Policy", href: "#" },
-    ],
-  },
-];
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer
-      className="pt-16 pb-9 px-6 sm:px-16 xl:px-32 border-t border-white/[0.07]"
-      style={{ background: "#0A0F1E" }}
-    >
-      {/* Grid */}
-      <div
-        className="grid gap-12 pb-12 border-b border-white/[0.07] max-w-[1200px] mx-auto"
-        style={{ gridTemplateColumns: "2fr 1fr 1fr 1fr" }}
+    <footer className="relative py-12 px-6 flex flex-col items-center text-center overflow-hidden border-t border-white/[0.08] bg-[#0A0F1E]">
+
+      {/* Top Gradient Line */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-60"></div>
+
+      {/* Glow Background */}
+      <div className="absolute w-[300px] h-[300px] bg-yellow-400/10 blur-[120px] rounded-full top-[-100px]"></div>
+
+      {/* Logo */}
+      <button
+        onClick={() => navigate("/")}
+        className="flex items-center gap-3 mb-5 group"
       >
-        {/* Brand */}
-        <div>
-          <button
-            className="flex items-center gap-2.5 mb-3 cursor-pointer bg-transparent border-none p-0"
-            onClick={() => navigate("/")}
-          >
-            <div className="w-9 h-9 rounded-[10px] bg-gold-gradient flex items-center justify-center text-white font-display font-black text-sm tracking-tighter">
-              AI
-            </div>
-            <span className="font-display font-bold text-[1.25rem] text-white">Content Studio</span>
-          </button>
-          <p className="text-slate text-[0.88rem] leading-[1.7] max-w-[280px]">
-            The all-in-one AI platform for writing, image creation, and editing. Built for creators, marketers, and professionals.
-          </p>
+        <div className="w-16 h-16 rounded-[16px] bg-gold-gradient flex items-center justify-center text-white font-black text-xl shadow-lg 
+        group-hover:scale-110 transition duration-300 
+        shadow-yellow-400/30">
+          AI
         </div>
 
-        {/* Link Columns */}
-        {footerCols.map((col) => (
-          <div key={col.title}>
-            <h5 className="text-[0.8rem] font-semibold uppercase tracking-[2px] text-slate mb-5 font-sans">
-              {col.title}
-            </h5>
-            <div className="flex flex-col gap-2.5">
-              {col.links.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="text-slateLight text-[0.88rem] no-underline transition-colors duration-200 hover:text-goldLight"
-                  onClick={(e) => {
-                    if (href.startsWith("/")) {
-                      e.preventDefault();
-                      navigate(href);
-                    }
-                  }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
+        <span className="text-3xl font-extrabold text-white tracking-tight">
+          Content Studio
+        </span>
+      </button>
+
+      {/* Tagline */}
+      <p className="text-slate text-sm max-w-md mb-4">
+        Create. Edit. Innovate — All in one AI-powered platform.
+      </p>
+
+      {/* Made in India */}
+      <p className="text-yellow-400 font-semibold mb-6 tracking-wide">
+        Made with ♥ in India
+      </p>
+
+      {/* Social Icons */}
+      <div className="flex gap-6 text-white text-lg mb-6">
+        {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map((Icon, i) => (
+          <a
+            key={i}
+            href="#"
+            className="p-3 rounded-full bg-white/5 backdrop-blur-md 
+            hover:bg-yellow-400 hover:text-black 
+            transition-all duration-300 transform hover:-translate-y-1 hover:scale-110"
+          >
+            <Icon />
+          </a>
         ))}
       </div>
 
-      {/* Bottom row */}
-      <div className="max-w-[1200px] mx-auto flex justify-between items-center flex-wrap gap-3 mt-7">
-        <p className="text-slate text-[0.8rem]">
-          © {new Date().getFullYear()} AI Content Studio. All rights reserved.
-        </p>
-        <p className="text-slate text-[0.8rem]">Made with ♥ in India</p>
-      </div>
+      {/* Divider */}
+      <div className="w-full max-w-[400px] h-[1px] bg-white/10 mb-4"></div>
+
+      {/* Copyright */}
+      <p className="text-slate text-xs opacity-80">
+        © {new Date().getFullYear()} AI Content Studio. All rights reserved.
+      </p>
     </footer>
   );
 };

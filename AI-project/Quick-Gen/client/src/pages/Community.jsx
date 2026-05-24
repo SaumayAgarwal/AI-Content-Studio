@@ -69,9 +69,18 @@ const Community = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
             <p className='text-sm text-gray-100 mb-2 truncate font-sans'> {creation.prompt}</p>
             <div className='flex gap-1 items-center justify-end w-full'>
-              <p className="text-white font-medium">{creation.likes.length}</p>
-              <Heart onClick={()=> imageLikeToggle(creation.id)} className={`min-w-5 h-5 transition-transform hover:scale-110 cursor-pointer ${
-                  creation.likes.includes(user?.id) ? 'fill-gold text-gold drop-shadow-[0_0_8px_rgba(201,151,58,0.6)]': 'text-white'}`}/>
+              <p className="text-white font-medium">
+                {creation.likes?.length || 0}
+              </p>
+
+              <Heart
+                onClick={() => imageLikeToggle(creation.id)}
+                className={`min-w-5 h-5 transition-transform hover:scale-110 cursor-pointer ${
+                  creation.likes?.includes(user?.id)
+                    ? "fill-gold text-gold drop-shadow-[0_0_8px_rgba(201,151,58,0.6)]"
+                    : "text-white"
+                }`}
+              />
             </div>
           </div>
         </div>
